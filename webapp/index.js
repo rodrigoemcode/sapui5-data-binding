@@ -7,10 +7,10 @@ sap.ui.require([
 
 	// Attach an anonymous function to the SAPUI5 'init' event
 	sap.ui.getCore().attachInit(function () {
+
 		var oProductModel = new JSONModel();
 		oProductModel.loadData("./model/Products.json");
 		sap.ui.getCore().setModel(oProductModel, "products");
-
 
 		var oModel = new JSONModel({
 			firstName: "Rodrigo",
@@ -18,7 +18,7 @@ sap.ui.require([
 			enabled: true,
 			address: {
 				street: "Dietmar-Hopp-Allee 16",
-				city: "Walldorf",
+				city: "Belo Horizonte",
 				zip: "69190",
 				country: "Brazil"
 			},
@@ -32,13 +32,13 @@ sap.ui.require([
 
 		var oResourceModel = new ResourceModel({
 			bundleName: "sap.ui.demo.db.i18n.i18n",
-			supportedLocales: ["", "de"],
-			fallbackLocale: ""
+			fallbackLocale: "",
+			supportedLocales: ["", "de"]
 		});
 
 		sap.ui.getCore().setModel(oResourceModel, "i18n");
 
-		// Create the XML view called "App"
+		// Display the XML view called "App"
 		var oView = new XMLView({
 			viewName: "sap.ui.demo.db.view.App"
 		});
@@ -46,7 +46,7 @@ sap.ui.require([
 		// Register the view with the message manager
 		sap.ui.getCore().getMessageManager().registerObject(oView, true);
 
-		// Display the view
+		// Insert the view into the DOM
 		oView.placeAt("content");
 	});
 });
