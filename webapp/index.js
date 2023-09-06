@@ -7,7 +7,10 @@ sap.ui.require([
 
 	// Attach an anonymous function to the SAPUI5 'init' event
 	sap.ui.getCore().attachInit(function () {
-		// Create a JSON model from an object literal
+		var oProductModel = new JSONModel();
+		oProductModel.loadData("./model/Products.json");
+		sap.ui.getCore().setModel(oProductModel, "products");
+
 		var oModel = new JSONModel({
 			firstName: "Rodrigo",
 			lastName: "Silva",
@@ -17,31 +20,31 @@ sap.ui.require([
 				city: "Walldorf",
 				zip: "69190",
 				country: "Brazil"
-			}
+			},
+			salesAmount: 12345.6789,
+			currencyCode: "EUR"
 		});
 
 		// Assign the model object to the SAPUI5 core
 		sap.ui.getCore().setModel(oModel);
 
-		// Create a resource bundle for language specific texts
-		// the configured supportedLocales represent the i18n files present:
-		// * "" - i18n/i18n.properties
-		// the configured fallbackLocale should represent one of these files
-		// * "" - according to the fallback chain the root bundle is the last fallback.
-		//   Configuring it explicitly avoids side effects when additional resource files are added.
-		// @see https://ui5.sap.com/#/topic/ec753bc539d748f689e3ac814e129563
 		var oResourceModel = new ResourceModel({
 			bundleName: "sap.ui.demo.db.i18n.i18n",
-			supportedLocales: ["", "de"],
-			fallbackLocale: ""
+			fallbackLocale: "",
+			supportedLocales: ["", "de"]
 		});
 
-		// Assign the model object to the SAPUI5 core using the name "i18n"
 		sap.ui.getCore().setModel(oResourceModel, "i18n");
 
 		// Display the XML view called "App"
-		new XMLView({
+		var oView = new XMLView({
 			viewName: "sap.ui.demo.db.view.App"
-		}).placeAt("content");
+		});
+
+		// Register the view with the message manager
+		sap.ui.getCore().getMessageManager().registerObject(oView, true);
+
+		// Insert the view into the DOM
+		oView.placeAt("content");
 	});
 });
