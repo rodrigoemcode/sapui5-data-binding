@@ -16,3 +16,5 @@ Step 12: Aggregation Binding Using Templates
 Step 13: Element Binding  
 Step 14: Expression Binding  
 Step 15: Aggregation Binding Using a Factory Function  
+
+https://sapui5.hana.ondemand.com/#/topic/e5310932a71f42daa41f3a6143efca9c
