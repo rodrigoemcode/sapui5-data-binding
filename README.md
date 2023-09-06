@@ -1,6 +1,6 @@
 # Data Binding Tutorial
 
-In this section:
+In this section:  
 Step 1: No Data Binding  
 Step 2: Creating a Model  
 Step 3: Create Property Binding  
